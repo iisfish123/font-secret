@@ -1,0 +1,177 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta id="viewport" name="viewport" content="width=640px, user-scalable=no"/>
+    <link rel="shortcut icon" type="image/x-icon"
+          href="https://res.wx.qq.com/payactres/zh_CN/htmledition/images/favicon1d7e6c.ico"/>
+
+    <script type="text/javascript" src="./public/build/main.1114115735.js"></script>
+    <link rel="stylesheet" type="text/css" href="./public/build/style.1114115735.css"/>
+    <script type="text/javascript">
+        adaptUILayout.load(640);
+        window.apiUrl = '//api.cloud.m0.hk/csairjjh/';
+        window.bgm = './public/music/bg.mp3';
+    </script>
+    <title>南航校招集结号</title>
+</head>
+<body>
+<div class="loading">
+    <div class="loading-cloud1"></div>
+    <div class="loading-cloud2"></div>
+    <div class="loading-font"></div>
+    <div class="loading-head"></div>
+    <div class="text">0%</div>
+</div>
+<div class="site-home site-common unload">
+    <div class="container">
+        <div class="up-btn"><i class="ani-fl2"></i></div>
+
+        <div class="audio"></div>
+        <div class="page-box">
+            <div class="main">
+                <section class="page-0" data-pageid="home">
+                    <div class="scroll screen-top">
+                        <div class="p0-bg"></div>
+                        <div class="p0-title"></div>
+                        <div class="p0-hand">
+                            <div class="p0-btn"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="page-1" data-pageid="p1">
+                    <div class="screen screen-top">
+                        <div class="p1-bg">
+                            <div class="p1-bg1"></div>
+                            <div class="p1-bg2">
+                            </div>
+                            <div class="p1-bg3">
+                            </div>
+                        </div>
+
+                        <div class="cloud1"></div>
+                        <div class="cloud2"></div>
+
+                        <div class="p1-fly"></div>
+
+                        <div class="game game1">
+                            <div class="title"></div>
+                            <div class="question"></div>
+                            <div class="select-a" data-index="a"><p><span style="font-weight: bold">700</span>多架</p></div>
+                            <div class="select-b" data-index="b"><p><span style="font-weight: bold">500</span>多架</p></div>
+                        </div>
+                        <div class="game game2">
+                            <div class="title"></div>
+                            <div class="question"></div>
+                            <div class="select-a" data-index="a"><p>高中生</p></div>
+                            <div class="select-b" data-index="b"><p>应届大学生</p></div>
+                        </div>
+                        <div class="game game3">
+                            <div class="title"></div>
+                            <div class="question"></div>
+                            <div class="select-a" data-index="a"><p>可以</p></div>
+                            <div class="select-b" data-index="b"><p>不可以</p></div>
+                        </div>
+                        <div class="game game4">
+                            <div class="title"></div>
+                            <div class="question"></div>
+                            <div class="select-a" data-index="a"><p>可以</p></div>
+                            <div class="select-b" data-index="b"><p>不可以</p></div>
+                        </div>
+                        <div class="game game5">
+                            <div class="title"></div>
+                            <div class="question"></div>
+                            <div class="select-a" data-index="a"><p>可以</p></div>
+                            <div class="select-b" data-index="b"><p>不可以</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="page-2" data-pageid="p2">
+                    <div class="screen screen-top">
+                        <div class="p2-bg"></div>
+                        <div class="p2-nickname"></div>
+                        <div class="p2-btn1"></div>
+                        <div class="p2-btn2"></div>
+                    </div>
+                </section>
+
+                <section class="page-3" data-pageid="p3">
+                    <div class="scroll screen-top">
+                        <div class="p3-bg"></div>
+                        <img src="./public/img/p3-qrcode.jpg" alt="" class="qrcode">
+                        <div class="p3-ren"></div>
+                    </div>
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="share-f" data-sharef="">
+    <div class="share-icon">
+    </div>
+</div>
+<div class="modal">
+    <div class="game-result">
+        <div class="font"></div>
+        <div class="result"></div>
+        <div class="next"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.shareData = {
+        "imgUrl": 'http://cdn.h5ap.cn/csairjjh/public/img/share2.jpg',
+        "link": window.location.href,
+        "desc": "欲知详情，速来答题",
+        "title": "南航2018年飞行学员招生进行时",
+        "success": function (res) {
+            app.log('分享','分享成功');
+        }
+    };
+</script>
+
+<script>
+    setInterval(function () {
+        if (typeof wx != 'undefined') {
+//            wx.hideOptionMenu();
+        }
+    }, 500);
+    var loadJsapi = function () {
+        if (window.wxConfig && window.wxConfig.appId && window.wxReadyed) {
+            return;
+        }
+        window.wxtry = window.wxtry || 0;
+        if (window.wxtry++ > 5) {
+            return;
+        }
+        var now = new Date();
+        var _wxJs = document.createElement('script');
+        _wxJs.src = "//reg.qun.hk/jsapi/?app=6&_t=" + now.getTime();
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(_wxJs, s);
+        setTimeout(loadJsapi, 3000);
+    };
+    loadJsapi();
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?cf0ad71cac000dbd80a40cb93a6541d1";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

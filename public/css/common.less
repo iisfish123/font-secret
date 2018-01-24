@@ -1,0 +1,122 @@
+@import "reset";
+@import "animate";
+@import "mixins/solution";
+@import "mixins/layout";
+@import "mixins/animation";
+
+
+.background-image-box(@image) {
+  background: url(@image) no-repeat center;
+  width: image-width(@image);
+  height: image-height(@image);
+}
+
+.background-image-box-inner(@image) {
+  width: image-width(@image);
+  height: image-height(@image);
+  i {
+    background: url(@image) no-repeat center;
+  }
+}
+
+
+.ani-duration-05s {
+  animation-duration: .5s !important;
+  -webkit-animation-duration: .5s !important;
+}
+
+.ani-duration-2s {
+  animation-duration: 2s !important;
+  -webkit-animation-duration: 2s !important;
+}
+
+.ani-duration-3s {
+  animation-duration: 3s !important;
+  -webkit-animation-duration: 3s !important;
+}
+
+.ani-duration-5s {
+  animation-duration: 5s !important;
+  -webkit-animation-duration: 5s !important;
+}
+
+.ani-duration-8s {
+  animation-duration: 8s !important;
+  -webkit-animation-duration: 8s !important;
+}
+
+.ani-duration-10s {
+  animation-duration: 10s !important;
+  -webkit-animation-duration: 10s !important;
+}
+
+.page-box {
+  #solution > .transition(background-position .8s);
+  width: 640px;
+  overflow: hidden;
+  position: relative;
+
+}
+
+section {
+  width: 640px;
+  position: relative;
+  height: 1000px;
+  overflow: hidden !important;
+  #solution > .transition(opacity .5s);
+  .unload * {
+    background-image: none !important;
+  }
+  .scroll {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    .content {
+      width: 100%;
+      #layout > .clearfix();
+      & > div {
+        position: absolute;
+        display: none;
+        i {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+  }
+  .screen {
+    position: absolute;
+    top: 50%;
+    margin-top: -1050px / 2;
+    height: 1050px;
+    width: 100%;
+    overflow: hidden;
+    & > div{
+      display: none;
+    }
+    div {
+      position: absolute;
+      i {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .screen-top {
+    top: 0 !important;
+    margin-top: 0 !important;
+  }
+  .screen-bottom {
+    top: auto !important;
+    bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+
+}

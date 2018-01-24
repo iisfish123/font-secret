@@ -1,0 +1,576 @@
+@import "solution";
+/*
+animation: name duration timing-function delay iteration-count direction;
+
+值	描述	测试
+linear	动画从头到尾的速度是相同的。	测试
+ease	默认。动画以低速开始，然后加快，在结束前变慢。	测试
+ease-in	动画以低速开始。	测试
+ease-out	动画以低速结束。	测试
+ease-in-out	动画以低速开始和结束。	测试
+cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。
+
+animation-iteration-count: n|infinite;
+值	描述	测试
+n	定义动画播放次数的数值。	测试
+infinite	规定动画应该无限次播放。	测试
+
+值	描述	测试
+normal	默认值。动画应该正常播放。	测试
+alternate	动画应该轮流反向播放。	测试
+
+*/
+#animation {
+	.add(@name){
+		animation: @name;
+		-webkit-animation: @name;
+	}
+	.translate(@selector, @name, @x, @y, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .translate(0, 0);
+			}
+			100%  {
+				#solution > .translate(@x, @y);
+
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+  .translate-door(@selector, @name, @x, @y, @other) {
+    @newline: `"\n"`; // Newline
+    .Keyframe(@pre, @post, @vendor) {
+      @keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+      @{keyframe} {
+        #solution > .translate(0, 0);
+        opacity: 1;
+      }
+      100%  {
+        #solution > .translate(@x, @y);
+        opacity: 0;
+
+      }
+      .Local(){}
+      .Local() when (@post=1) {
+        @local: ~"}@{newline}@{selector}";
+        @{local} {
+          -webkit-animation: @name @other;
+          animation: @name @other;
+        }
+      }
+      .Local;
+    }
+    .Keyframe(""            , 0, "-webkit-");
+    .Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+  }
+	.translate-x(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .translate(@begin, 0);
+			}
+			100%  {
+				#solution > .translate(@end, 0);
+
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+	.translate-rain(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .translate(0, @begin);
+				opacity: 0;
+			}
+			10%  {
+				#solution > .translate(0, @begin + (@end - @begin)*0.1);
+				opacity: 1;
+			}
+			100%  {
+				#solution > .translate(0, @end);
+				opacity: 0;
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+	.translate-jump(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .translate(0, @begin);
+			}
+          20%  {
+            #solution > .translate(0, @begin);
+          }
+          40%  {
+            #solution > .translate(0, -@end);
+          }
+			60%  {
+				#solution > .translate(0, @begin);
+			}
+			70%  {
+				#solution > .translate(0, @end);
+			}
+			80%  {
+				#solution > .translate(0, @begin);
+			}
+			90%  {
+				#solution > .translate(0, @end);
+			}
+			100%  {
+				#solution > .translate(0, @begin);
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+
+	.translate-p5head(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .translate(0, @begin);
+			}
+			20%  {
+				#solution > .translate(0, @end*0.8);
+			}
+			80%  {
+				#solution > .translate(0, @end);
+			}
+			100%  {
+				#solution > .translate(0, @begin);
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+	.translate-up(@selector, @name, @x, @y, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .translate(0, 0);
+			}
+			100%  {
+				#solution > .translate(@x, @y);
+				opacity: 0;
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+    .translate-opacity(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+                opacity: @begin;
+			}
+			100%  {
+				opacity: @end;
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+  .translate-flash(@selector, @name, @other) {
+    @newline: `"\n"`; // Newline
+    .Keyframe(@pre, @post, @vendor) {
+      @keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+      @{keyframe} {
+        opacity: 1;
+      }
+      60%  {
+        opacity: 1;
+      }
+      70%  {
+        opacity: 0.8;
+      }
+      80%  {
+        opacity: 1;
+      }
+      90%  {
+        opacity: 0.5;
+      }
+      100%  {
+        opacity: 1;
+      }
+      .Local(){}
+      .Local() when (@post=1) {
+        @local: ~"}@{newline}@{selector}";
+        @{local} {
+          -webkit-animation: @name @other;
+          animation: @name @other;
+        }
+      }
+      .Local;
+    }
+    .Keyframe(""            , 0, "-webkit-");
+    .Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+  }
+  .translate-flash2(@selector, @name, @other) {
+    @newline: `"\n"`; // Newline
+    .Keyframe(@pre, @post, @vendor) {
+      @keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+      @{keyframe} {
+        opacity: 0;
+      }
+      60%  {
+        opacity: 0;
+      }
+      70%  {
+        opacity: 1;
+      }
+      80%  {
+        opacity: 0;
+      }
+      90%  {
+        opacity: 1;
+      }
+      100%  {
+        opacity: 0;
+      }
+      .Local(){}
+      .Local() when (@post=1) {
+        @local: ~"}@{newline}@{selector}";
+        @{local} {
+          -webkit-animation: @name @other;
+          animation: @name @other;
+        }
+      }
+      .Local;
+    }
+    .Keyframe(""            , 0, "-webkit-");
+    .Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+  }
+	.translate-zoom(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .scale(@begin);
+			}
+			100%  {
+				#solution > .scale(@end);
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+  .translate-zoomAndShow(@selector, @name, @begin, @end, @other) {
+    @newline: `"\n"`; // Newline
+    .Keyframe(@pre, @post, @vendor) {
+      @keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+      @{keyframe} {
+        #solution > .scale(@begin);
+        opacity: 0;
+      }
+      100%  {
+        #solution > .scale(@end);
+        opacity: 1;
+      }
+      .Local(){}
+      .Local() when (@post=1) {
+        @local: ~"}@{newline}@{selector}";
+        @{local} {
+          -webkit-animation: @name @other;
+          animation: @name @other;
+        }
+      }
+      .Local;
+    }
+    .Keyframe(""            , 0, "-webkit-");
+    .Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+  }
+	.translate-zoom2(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .scale(@begin);
+			}
+			50%  {
+				#solution > .scale(@end);
+			}
+			75%  {
+				#solution > .scale(@begin);
+			}
+			100%  {
+				#solution > .scale(@end);
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+	.translate-rotate(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .rotate(@begin);
+			}
+
+			100%  {
+				#solution > .rotate(@end);
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+	.translate-yan(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .translate(-@begin, -@end);
+				opacity: 0;
+			}
+			25%  {
+				#solution > .translate(-@begin/2 + 10, -@end/2);
+			}
+			49%  {
+				#solution > .translate(0, 0);
+				opacity: 1;
+			}
+			75%  {
+				#solution > .translate(@begin/2 - 10, @end/2);
+			}
+			100%  {
+				#solution > .translate(@begin, @end);
+				opacity: 0;
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+	.translate-cloud(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .translate(0, 0);
+			}
+			49%  {
+				#solution > .translate(@begin, @end);
+				opacity: 1;
+			}
+			50%  {
+				#solution > .translate(@begin, @end);
+				opacity: 0;
+			}
+			51%  {
+				#solution > .translate(-@begin, -@end);
+				opacity: 0;
+			}
+			52%  {
+				#solution > .translate(-@begin, -@end);
+				opacity: 1;
+			}
+			100%  {
+				#solution > .translate(0, 0);
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+	.translate-hand(@selector, @name, @begin, @end, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				#solution > .rotate(@begin);
+				transform-origin: 45px 120px;
+				-webkit-transform-origin: 45px 120px;
+			}
+			100%  {
+				#solution > .rotate(@end);
+				transform-origin: 45px 120px;
+				-webkit-transform-origin: 45px 120px;
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+	.translate-background(@selector, @name, @x, @y, @tx, @ty, @other) {
+		@newline: `"\n"`; // Newline
+		.Keyframe(@pre, @post, @vendor) {
+			@keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+			@{keyframe} {
+				background-position: @x @y;
+			}
+			100%  {
+				background-position: @tx, @ty;
+			}
+			.Local(){}
+			.Local() when (@post=1) {
+				@local: ~"}@{newline}@{selector}";
+				@{local} {
+					-webkit-animation: @name @other;
+					animation: @name @other;
+				}
+			}
+			.Local;
+		}
+		.Keyframe(""            , 0, "-webkit-");
+		.Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+	}
+  .translate-background2(@selector, @name, @x, @y, @tx, @ty, @other) {
+    @newline: `"\n"`; // Newline
+    .Keyframe(@pre, @post, @vendor) {
+      @keyframe: ~"@{pre}@@{vendor}keyframes @{name} {@{newline}0%";
+      @{keyframe} {
+        background-position: @x @y;
+      }
+      1%  {
+        background-position: @tx, @ty;
+      }
+      50%  {
+        background-position: @tx, @ty;
+      }
+      51%  {
+        background-position: @x @y;
+      }
+      100%  {
+        background-position: @x @y;
+      }
+      .Local(){}
+      .Local() when (@post=1) {
+        @local: ~"}@{newline}@{selector}";
+        @{local} {
+          -webkit-animation: @name @other;
+          animation: @name @other;
+        }
+      }
+      .Local;
+    }
+    .Keyframe(""            , 0, "-webkit-");
+    .Keyframe(~"}@{newline}", 1,         ""); // <-- Vendorless w3
+  }
+}

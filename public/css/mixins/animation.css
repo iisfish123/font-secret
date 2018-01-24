@@ -1,0 +1,21 @@
+/*
+animation: name duration timing-function delay iteration-count direction;
+
+值	描述	测试
+linear	动画从头到尾的速度是相同的。	测试
+ease	默认。动画以低速开始，然后加快，在结束前变慢。	测试
+ease-in	动画以低速开始。	测试
+ease-out	动画以低速结束。	测试
+ease-in-out	动画以低速开始和结束。	测试
+cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。
+
+animation-iteration-count: n|infinite;
+值	描述	测试
+n	定义动画播放次数的数值。	测试
+infinite	规定动画应该无限次播放。	测试
+
+值	描述	测试
+normal	默认值。动画应该正常播放。	测试
+alternate	动画应该轮流反向播放。	测试
+
+*/

@@ -1,0 +1,73 @@
+#layout {
+	.clearfix() {
+		&:after {
+			display: table;
+			content: "";
+			line-height: 0;
+		}
+		&:after {
+			clear: both;
+		}
+	}
+	.nowrap() {
+		white-space: nowrap;
+		word-wrap: normal;
+	}
+	.line-overflow() {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		.nowrap();
+	}
+	.hide-text() {
+		font-size: 0;
+		color: transparent;
+		text-shadow: none;
+	}
+
+	.empty-space() {
+		font-size: 0;
+		letter-spacing: -0.31em;
+	}
+
+	.reset-space(@fontSize) {
+		font-size: @fontSize;
+		letter-spacing: normal;
+	}
+
+	.inline-block(@fontSize: 0) {
+		font-size: @fontSize;
+		display: inline-block;
+		letter-spacing: normal;
+	}
+
+
+	//仅支持0、90、180、270四种角度
+	.triangle(...) {
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		line-height: 0;
+		border-style: solid;
+	}
+
+	.triangle(@bottomWidth; @height; @color; @deg) when (@deg = 0) {
+		border-width: @bottomWidth/2 @height;
+		border-color: transparent transparent transparent @color;
+	}
+
+	.triangle(@bottomWidth; @height; @color; @deg) when (@deg = 90) {
+		border-width: @height @bottomWidth/2;
+		border-color: transparent transparent @color transparent;
+	}
+
+	.triangle(@bottomWidth; @height; @color; @deg) when (@deg = 180) {
+		border-width: @bottomWidth/2 @height;
+		border-color: transparent @color transparent transparent;
+	}
+
+	.triangle(@bottomWidth; @height; @color; @deg) when (@deg = 270) {
+		border-width: @height @bottomWidth/2;
+		border-color: @color transparent transparent transparent;
+	}
+}
