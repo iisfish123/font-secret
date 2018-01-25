@@ -5,9 +5,8 @@ $debug = !empty($_GET['test']);
 $scriptName = basename($_SERVER['SCRIPT_FILENAME']);
 $pos = strpos($_SERVER['PHP_SELF'], '/' . $scriptName);
 $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['SCRIPT_NAME'], 0, $pos) . '/';
-$apiUrl = '//api.cloud.m0.hk/csairjjh/';
 if (!empty($debug)) {
-        $apiUrl = 'http://zhou-api.cloud.m0.hk/csairjjh/';
+
 }
 ?>
 <html>
