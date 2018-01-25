@@ -57,6 +57,7 @@ if (!empty($debug)) {
             <div class="main">
                 <section class="page-0" data-pageid="home">
                     <div class="screen screen-top">
+                        <img src="./public/img/dog.png" alt="">
                         <div class="top">
                             <textarea name="" id="" cols="30" rows="10" maxlength="30"></textarea>
                             <button>提交</button>

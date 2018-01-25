@@ -368,27 +368,47 @@ $(function () {
     var game = {
         init:function(){
             $('.page-0').find('button').off('touchstart').on('touchstart',function(){
-                var text = $('textarea').val();
+                var img = $('img')[0];
+                var text = $('textarea').val().toLocaleUpperCase();
                 var c = document.getElementById('canvas')
                 var ctx = c.getContext('2d')
                 ctx.clearRect(0, 0, 480, 480)
                 ctx.font = "24px Arial";
                 ctx.fillStyle="#f00";
                 // ctx.fillText('1223',50,50);
-                var nextX = 0;
+                var nextX = 30;
+                var nextY = 50;
                 for(var i=0;i<text.length;i++){
-                    // console.info(text[i]);
+                    try {
+                        thisStr = text[i];
+                        if(text[i].charCodeAt()<1000){
+                            //假设为标点符号，或者其他符号类型，统一转成是空格
+                            var thisStr = '';
+                            if( (text[i].charCodeAt()>=97&&text[i].charCodeAt()<=122) ||//小写字母
+                                (text[i].charCodeAt()>=65&&text[i].charCodeAt()<=90) ||//大写字母
+                                (text[i].charCodeAt()>=48&&text[i].charCodeAt()<=57)){//数字
+                                thisStr = text[i];
+                            }else{
+                                thisStr = ' ';
+                            }
+                        }
+                        ctx.fillText(thisStr,nextX,nextY);
+                        if(Math.random()*10>4){
+                            ctx.drawImage(img,nextX-5,nextY-25,40,40);
+                        }
 
-                    if(text[i].charCodeAt()<1000){
-                        ctx.font = "28px Arial";
-                        ctx.fillText(text[i],nextX,52);
-                        nextX += 24;
-                    }else{
-                        ctx.font = "24px Arial";
-                        ctx.fillText(text[i],nextX,50);
-                        nextX += 26;
+                        nextX += 40;
+                        if(nextX>=430){
+                            nextX = 30;
+                            nextY += 50;
+                        }
+                    }catch (e){//捕获到错误，那么text[i]就是' '
+                        text[i] = ''
                     }
                 }
+
+                // var n = Math.random()*10;
+                // ctx.fillRect(n*32-6,25,20,32);
             });
             window.click = true;
         }
@@ -409,50 +429,6 @@ $(function () {
                 app.play('p1',true);
                 app.log('首页','点击打开按钮');
             })
-        }
-    };
-    app.playAction['p1'] = function () {
-        app.scrollAble = true;
-        app.nextPage = false;
-        app.prevPage = false;
-        var $page = $('.page-1');
-        $(".up-btn").hide();
-        $page.find('.p1-bg,.p1-fly,.cloud1,.cloud2').show();
-        if (!window.page1) {
-            window.page1 = true;
-        }
-    };
-    app.playAction['p2'] = function () {
-        app.scrollAble = true;
-        app.nextPage = false;
-        app.prevPage = false;
-        var $page = $('.page-2');
-        $(".up-btn").hide();
-        $page.find('.p2-bg,.p2-nickname').show();
-        $page.find('.p2-btn1').addAni('fadeInUp',0.3);
-        $page.find('.p2-btn2').addAni('fadeInUp',0.6);
-        $('.p2-nickname').html((window.nickname?window.nickname:'南航粉丝')+':');
-        if (!window.page2) {
-            window.page2 = true;
-            $page.find('.p2-btn1').on('tap',function(){
-                app.log('通过页','打开外链');
-                location.href = 'https://job.csair.com/showactive?id=1001J1100000000SM0VY';
-            });
-            $page.find('.p2-btn2').on('tap',function(){
-                app.log('分享','点击分享按钮');
-                Weixin.share();
-            });
-        }
-    };
-    app.playAction['p3'] = function () {
-        app.scrollAble = true;
-        app.nextPage = false;
-        app.prevPage = false;
-        var $page = $('.page-3');
-        $(".up-btn").hide();
-        $page.find('*').show();
-        if (!window.page3) {
-            window.page3 = true;
         }
     };
     /**---------百度统计--------**/

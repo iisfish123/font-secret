@@ -3146,7 +3146,10 @@ body,
 }
 .page-0 canvas {
   position: absolute;
-  top: 300px;
+  top: 400px;
+}
+.page-0 img {
+  display: none;
 }
 .modal {
   display: none;
